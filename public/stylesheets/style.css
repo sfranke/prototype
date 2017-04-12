@@ -17,8 +17,7 @@ img[id^="image9-"] {
   left: 0;
 }
 
-img[class^="imageX-"] {
-  position: relative;
+img[id^="imageX-"] {
   top: 0;
   left: 0;
 }"
