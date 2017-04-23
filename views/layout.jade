@@ -117,10 +117,6 @@ html(lang='en')
                     |$( document ).ready(function() {
                     |  $('#disableregisterbtn').show()
                     |});
-            - if (session != undefined && session.user != undefined)
-              li
-                a(href='/account') Account
-            | 
             - if (session != undefined && session.user != undefined && session.user.permission === 'admin')
               li
                 a(href='/users') Users

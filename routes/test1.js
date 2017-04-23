@@ -2,10 +2,18 @@ var express = require('express')
 var router = express.Router()
 var database = require('./database')
 var bcrypt = require('bcrypt')
+var util = require('util')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('test1', { title: 'Express' })
+  // console.log('USERDATA: ' + util.inspect(req.session.user))
+  if (!req.session.user) {
+    return res.redirect('/')
+  }
+  // Only render this route if user has valid session and proper permission.
+  if (req.session.user.permission === 'admin' || req.session.user.permission === 'user') {
+    res.render('test1', {title: 'test1', name: undefined, session: req.session})
+  }
 })
 
 router.post('/', function (req, res, next) {

@@ -8,11 +8,12 @@ var util = require('util');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  // console.log('Session:', req.session)
+  console.log('Session:', req.session)
   var adminUser = {
-    'name': 'admin',
+    'name': 'Admin',
     'email': 'admin@localhost.com',
     'password': null,
+    'gender': null,
     'permission': 'admin'
   }
   database.getUser(adminUser, function (error, response) {
@@ -34,8 +35,8 @@ router.get('/', function(req, res, next) {
     }
   })
   serverTime();
-  res.render('index', { title: 'Express' });
-});
+  res.render('index', { title: 'iTest', session: req.session })
+})
 
 function serverTime () {
   setInterval(function () {

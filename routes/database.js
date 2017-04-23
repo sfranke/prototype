@@ -26,7 +26,8 @@ database.saveUser = function (user, callback) {
           'name': user.name,
           'password': user.password,
           'permission': user.permission || 'user',
-          'email': user.email},
+          'email': user.email,
+          'gender': user.gender || null},
           {upsert: true},
           function (error, doc) {
             if (error) callback(err, null)
@@ -86,7 +87,8 @@ database.updateUserPermission = function (user, permission, callback) {
             'name': doc.name,
             'password': doc.password,
             'permission': permission,
-            'email': doc.email
+            'email': doc.email,
+            'gender': doc.gender
           },
           {
             upsert: true
