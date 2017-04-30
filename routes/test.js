@@ -3,6 +3,7 @@ var router = express.Router()
 var database = require('./database')
 var bcrypt = require('bcrypt')
 var util = require('util')
+var pool = require('./pool.json')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,7 +13,7 @@ router.get('/', function(req, res, next) {
   }
   // Only render this route if user has valid session and proper permission.
   if (req.session.user.permission === 'admin' || req.session.user.permission === 'user') {
-    res.render('test1', {title: 'test1', name: undefined, session: req.session})
+    res.render('test', {title: 'test', name: undefined, session: req.session, pool: pool})
   }
 })
 
@@ -24,7 +25,7 @@ router.post('/', function (req, res, next) {
       if (bcrypt.compareSync(req.body.password, user.password) === true) {
         // console.log('Password correct!'.green.bold)
         req.session.user = user
-        res.redirect('/test1')
+        res.redirect('/test')
       } else {
         // console.log('Wrong password!'.bold.red)
         return res.redirect('/register')

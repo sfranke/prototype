@@ -13,6 +13,8 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
   if (req.body.email !== '' && req.body.name !== '' && req.body.password !== '') {
+    // TODO: Creating a user might want to consider to realize that the 'old fashioned way'
+    // for the sake of demonstration. Check back with Mr. Kuhn.
     var user = {'name': req.body.name, 'email': req.body.email, 'password': req.body.password, 'gender': req.body.gender}
     generateHashedPassword(req.body.password, function (error, password) {
       if (error) console.log('error', 'Error while saving user.')
@@ -22,7 +24,7 @@ router.post('/', function (req, res, next) {
         if (user != null) {
           req.session.user = user
           // TODO: Should redirect to whatever route we use as entry point.
-          res.redirect('/test1')
+          res.redirect('/test')
         } else {
           return res.redirect('/register', 422, {message: req.flash('signupMessage', 'That email is already taken')})
         }

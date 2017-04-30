@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  - if (pool != undefined)
+    - each task in pool
+      div.container
+        div.row
+          div.col-xs-12.col-sm-12.col-md-12
+            p(id='question')=task.question
+          - each answer in task.answers
+            div.col-xs-12.col-sm-12.col-md-12
+              p(id='answer')=answer
