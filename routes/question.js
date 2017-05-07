@@ -2,6 +2,7 @@ const database = require('./database.js')
 const util = require('util')
 const events = require('events')
 
+// The prototype for a question. Question objects can be instanciated with the 'new' key word.
 function question() {
   this.category = ''
   this.question = ''
@@ -9,11 +10,11 @@ function question() {
   this.solution = 0
 }
 
-question.getQuestionByIndex = function (questionObject, index, callback) {
-  // let ques = new question()
-  database.getQuestionById(index, function (error, question) {
+// Expects a question object and a 'question_id'. Then returns either a error message or a question
+// object from the database. Question_ids are unique to each question.
+question.getQuestionByIndex = function (questionObject, question_id, callback) {
+  database.getQuestionById(question_id, function (error, question) {
     if(error) callback(error, null)
-    // console.log('Question after getQuestionById: ' + util.inspect(question))
     callback(null, question)
   })
 }
