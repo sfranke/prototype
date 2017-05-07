@@ -9,4 +9,7 @@ block content
             p(id='question')=task.question
           - each answer in task.answers
             div.col-xs-12.col-sm-12.col-md-12
-              p(id='answer')=answer
+              button.btn.btn-default(id='answer')=answer
+              div.col-xs-12.col-sm-12.col-md-12(style='padding-bottom: 10px')
+        div.row
+          div.col-xs-12.col-sm-12.col-md-12(style='padding-bottom: 25px')

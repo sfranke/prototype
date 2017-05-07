@@ -1,9 +1,11 @@
-var express = require('express')
-var router = express.Router()
-var database = require('./database')
-var bcrypt = require('bcrypt')
-var util = require('util')
-var pool = require('./pool.json')
+const express = require('express')
+const router = express.Router()
+const database = require('./database')
+const bcrypt = require('bcrypt')
+const util = require('util')
+let pool = require('./pool.json')
+const Question = require('./question')
+const QuestionPool = require('./questionPool')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,7 +15,20 @@ router.get('/', function(req, res, next) {
   }
   // Only render this route if user has valid session and proper permission.
   if (req.session.user.permission === 'admin' || req.session.user.permission === 'user') {
-    res.render('test', {title: 'test', name: undefined, session: req.session, pool: pool})
+
+    // Test prototype here:
+    let quest = new Question()
+    Question.getQuestionByIndex(quest, 111, function(error, question) {
+      if(error) console.log(error)
+      quest = question
+    })
+
+    let testPool = new QuestionPool()
+    QuestionPool.getPool(pool, 3, function(error, questionPool) {
+      if(error) console.log(error)
+      // Render site here to make sure the questionPool is ready to use before the site gets rendered.
+      res.render('test', {title: 'test', name: undefined, session: req.session, pool: questionPool})
+    })
   }
 })
 

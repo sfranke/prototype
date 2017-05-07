@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var moment = require('moment');
-var bcrypt = require('bcrypt');
-var database = require('./database.js');
-var util = require('util');
+var express = require('express')
+var router = express.Router()
+var moment = require('moment')
+var bcrypt = require('bcrypt')
+var database = require('./database.js')
+var util = require('util')
 
-/* GET home page. */
+/* GET index page. */
 router.get('/', function(req, res, next) {
 
   console.log('Session:', req.session)
