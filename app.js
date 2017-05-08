@@ -12,6 +12,7 @@ var test = require('./routes/test')
 var register = require('./routes/register')
 var logout = require('./routes/logout')
 var users = require('./routes/users')
+var results = require('./routes/results')
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use('/test', test)
 app.use('/register', register)
 app.use('/logout', logout)
 app.use('/users', users)
+app.use('/results', results)
 
 app.locals.moment = require('moment')
 app.locals.registerState = false

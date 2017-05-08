@@ -3,9 +3,10 @@ const router = express.Router()
 const database = require('./database')
 const bcrypt = require('bcrypt')
 const util = require('util')
-let pool = require('./pool.json')
 const Question = require('./question')
 const QuestionPool = require('./questionPool')
+
+let pool = require('./pool.json')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
