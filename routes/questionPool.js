@@ -38,7 +38,7 @@ questionPool.getPool = function (questionPool, amount, callback) {
 // TODO: This is a recursive function which might lead to performance issues depending on
 // the size of the question pool.
 function createUniqueNumbers(testIndexes) {
-  let randomNumber = getRandomIndex(100, 114)
+  let randomNumber = getRandomIndex(100, 113)
   for(i = testIndexes.length; i < maxAmountOfQuestions; i++) {
     if (testIndexes.indexOf(randomNumber) == -1) {
       testIndexes[i] = randomNumber

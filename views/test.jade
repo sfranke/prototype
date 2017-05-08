@@ -5,11 +5,18 @@ block content
     - each task in pool
       div.container
         div.row
-          div.col-xs-12.col-sm-12.col-md-12
+          div.col-xs-12.col-sm-12.col-md-12(id=task.question_id)
             p(id='question')=task.question
-          - each answer in task.answers
-            div.col-xs-12.col-sm-12.col-md-12
-              button.btn.btn-default(id='answer')=answer
-              div.col-xs-12.col-sm-12.col-md-12(style='padding-bottom: 10px')
+            - each answer in task.answers
+              div.col-xs-12.col-sm-12.col-md-12(id=task.question_id + '-' + task.answers.indexOf(answer))
+                button.btn.btn-default(id=task.question_id + '-' + task.answers.indexOf(answer), style='padding: 6px; display:;')=answer
+                script
+                  |$('#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).click(function() {
+                  |  $('div#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).children('button').each(function (index, value) {
+                  |    if($('button[id^="#{task.question_id}"]').is(':animated')) { return }
+                  |    $('button[id^="#{task.question_id}"]').not('button#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).hide(250)
+                  |  });
+                  |});
+                div.col-xs-12.col-sm-12.col-md-12(style='padding-bottom: 10px')
         div.row
           div.col-xs-12.col-sm-12.col-md-12(style='padding-bottom: 25px')

@@ -178,21 +178,6 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 112,
-    "question": "Welches Programm ist eine Tabellenkalkulation?",
-    "answers": [
-      "MS Word",
-      "MS Excel",
-      "Ms PneNote",
-      "MS Powerpoint",
-      "Ms Outlook"
-    ],
-    "solution": 1
-  }
-)
-
-db.questions.insert(
-  {
-    "question_id" : 113,
     "question": "Ein moderner Flachbildschirm wird auch bezeichnet als",
     "answers": [
       "TTF",
@@ -206,7 +191,7 @@ db.questions.insert(
 
 db.questions.insert(
   {
-    "question_id" : 114,
+    "question_id" : 113,
     "question": "Welches ist KEINE Programmiersprache?",
     "answers": [
       "C++",
