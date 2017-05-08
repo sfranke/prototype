@@ -139,11 +139,11 @@ db.questions.insert(
     "question": "Das Kürzel WWW steht für",
     "answers": [
       "World Wide Web",
-      "Wide WorldWeb",
+      "Wide World Web",
       "Wireless Web World",
       "World WiFi Web"
     ],
-    "solution": 1
+    "solution": 0
   }
 )
 
