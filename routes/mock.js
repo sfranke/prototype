@@ -2,7 +2,7 @@
 db.questions.insert(
   {
     "question_id" : 100,
-    "category": "general",
+    "category": "Benutzer",
     "question": "Welches Programm ist KEIN Betriebssystem",
     "answers": [
       "MS Windows",
@@ -18,7 +18,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 101,
-    "category": "general",
+    "category": "Benutzer",
     "question": "Welches Programm ist eine Tabellenkalkulation?",
     "answers": [
       "MS Word",
@@ -34,7 +34,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 102,
-    "category": "general",
+    "category": "Benutzer",
     "question": "Welches Programm ist kein Mailprogramm?",
     "answers": [
       "MS Mail",
@@ -49,7 +49,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 103,
-    "category": "general",
+    "category": "Benutzer",
     "question": "Was ist ein CMS?",
     "answers": [
       "Content-Management-System zum Erstellen und Bearbeiten von Webseiten",
@@ -64,7 +64,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 104,
-    "category": "general",
+    "category": "Benutzer",
     "question": "Sie sollen eine Präsentation für PC & Beamer erstellen. Welches Programm nutzen Sie dafür?",
     "answers": [
       "MS Word",
@@ -80,7 +80,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 105,
-    "category": "general",
+    "category": "Technik",
     "question": "Welches ist ein Datenträger mit magnetischer Datenaufzeichnung",
     "answers": [
       "Eine SD-Karte",
@@ -95,6 +95,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 106,
+    "category": "Benutzer",
     "question": "Welches Programm ist kein Mailprogramm?",
     "answers": [
       "MS Mail",
@@ -109,6 +110,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 107,
+    "category": "Programmieren",
     "question": "Ein Bug (englisch: Wanze, Ungeziefer) in der EDV bezeichnet",
     "answers": [
       "Spionageprogramme von NSA, GRU, ...",
@@ -122,6 +124,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 108,
+    "category": "Web",
     "question": "Versuche, über gefälschte Webseiten, E-Mails oder Kurznachrichten an persönliche Daten eines Internet-Benutzers zu gelangen und damit Identitätsdiebstahl zu begehen, nennt man",
     "answers": [
       "Blogging",
@@ -136,6 +139,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 109,
+    "category": "Web",
     "question": "Das Kürzel WWW steht für",
     "answers": [
       "World Wide Web",
@@ -150,6 +154,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 110,
+    "category": "Technik",
     "question": "Welchen Anschluss finden Sie NICHT am Computer?",
     "answers": [
       "PS/2",
@@ -164,6 +169,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 111,
+    "category": "Technik",
     "question": "Was ist KEINE drahtlose Übertragung?",
     "answers": [
       "Firewire",
@@ -178,6 +184,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 112,
+    "category": "Technik",
     "question": "Ein moderner Flachbildschirm wird auch bezeichnet als",
     "answers": [
       "TTF",
@@ -192,6 +199,7 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 113,
+    "category": "Programmieren",
     "question": "Welches ist KEINE Programmiersprache?",
     "answers": [
       "C++",
