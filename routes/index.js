@@ -7,8 +7,6 @@ var util = require('util')
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
-
-  console.log('Session:', req.session)
   var adminUser = {
     'name': 'Admin',
     'email': 'admin@localhost.com',

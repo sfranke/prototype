@@ -3,12 +3,16 @@ extends layout
 block content
   - if (pool != undefined)
     script
-      |var pool = {}
+      |var responsePool = {}
+      |var testPool = []
     - each task in pool
       script
         |var result = {}
-        |pool['#{task.question_id}'] = #{task.solution}
-        |console.info(pool)
+        |var testResult = []
+        |responsePool['#{task.question_id}'] = #{task.solution}
+        |console.info(responsePool)
+        |testPool.push({'#{task.question_id}': #{task.solution}, 'category': '#{task.category}'})
+        |console.info('TEST: ' + testPool)
 
       div.container
         div.row
@@ -22,9 +26,9 @@ block content
                   |  $('#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).click(function() {
                   |    $('div#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).children('button').each(function (index, value) {
                   |      if($('button[id^="#{task.question_id}"]').is(':animated')) { return }
-                  |      $('button[id^="#{task.question_id}"]').not('button#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).hide(250);
-                  |      result['#{task.question_id}'] = #{task.answers.indexOf(answer)};
-                  |      console.info('result: '+ result);
+                  |      $('button[id^="#{task.question_id}"]').not('button#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).attr("disabled", "disabled")
+                  |      result['#{task.question_id}'] = #{task.answers.indexOf(answer)}
+                  |      console.info('result: '+ result)
                   |    });
                   |  });
                   |})
@@ -40,8 +44,9 @@ block content
             |$( document ).ready(function() {
             |  $('#done').click(function() {
             |    var response = {}
-            |    response.pool = JSON.stringify(pool)
+            |    response.pool = JSON.stringify(responsePool)
             |    response.result = JSON.stringify(result)
+            |    response.testPool = JSON.stringify(testPool)
             |    $.post('results', response)
             |  })
             |})

@@ -42,7 +42,7 @@ db.questions.insert(
       "Thunderbird",
       "Typo3"
     ],
-    "solution": 1
+    "solution": 3
   }
 )
 
@@ -57,7 +57,7 @@ db.questions.insert(
       "Company-Management-System zur Verwaltung von Unternehmensdaten",
       "Customs-Management-System zur Verwaltung von internationalen Warentransporten (Customs = Zoll)"
     ],
-    "solution": 1
+    "solution": 0
   }
 )
 
@@ -71,7 +71,7 @@ db.questions.insert(
       "MS MS Excel",
       "MS OneNote",
       "MS Powerpoint",
-      "MS  Outlook"
+      "MS Outlook"
     ],
     "solution": 3
   }
