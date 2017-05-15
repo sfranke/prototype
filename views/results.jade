@@ -1,0 +1,16 @@
+div.container
+  row
+    h1 Eignungstest
+div.container
+  row
+    p=locals.user.gender + ' ' + locals.user.name
+    p erreichte am *heute* im CBM-Eignungstest
+  row
+    p=locals.percentage + ' Prozent'
+  - if (locals.percentage > 50)
+    p und hat damit den Test bestanden.
+  - else
+    p und hat damit den Test nicht bestanden.
+div.container
+  row
+    p Die erreichten Punkte setzen sich wie folgt zusammen:

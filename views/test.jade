@@ -1,54 +1,55 @@
 extends layout
 
 block content
-  - if (pool != undefined)
-    script
-      |var responsePool = {}
-      |var testPool = []
-    - each task in pool
+  div.container(id='test')
+    - if (pool != undefined)
       script
-        |var result = {}
-        |var testResult = []
-        |responsePool['#{task.question_id}'] = #{task.solution}
-        |console.info(responsePool)
-        |testPool.push({'#{task.question_id}': #{task.solution}, 'category': '#{task.category}'})
-        |console.info('TEST: ' + testPool)
+        |var responsePool = {}
+        |var testPool = []
+      - each task in pool
+        script
+          |var result = {}
+          |var testResult = []
+          |responsePool['#{task.question_id}'] = #{task.solution}
+          |console.info(responsePool)
+          |testPool.push({'#{task.question_id}': #{task.solution}, 'category': '#{task.category}'})
+          |console.info('TEST: ' + testPool)
 
+        div.container
+          div.row
+            div.col-xs-12.col-sm-12.col-md-12(id=task.question_id)
+              p(id='question')=task.question
+              - each answer in task.answers
+                div.col-xs-12.col-sm-12.col-md-12(id=task.question_id + '-' + task.answers.indexOf(answer))
+                  button.btn.btn-default(id=task.question_id + '-' + task.answers.indexOf(answer), style='padding: 6px; display: inline;')=answer
+                  script
+                    |$( document ).ready(function() {
+                    |  $('#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).click(function() {
+                    |    $('div#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).children('button').each(function (index, value) {
+                    |      if($('button[id^="#{task.question_id}"]').is(':animated')) { return }
+                    |      $('button[id^="#{task.question_id}"]').not('button#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).attr("disabled", "disabled")
+                    |      result['#{task.question_id}'] = #{task.answers.indexOf(answer)}
+                    |      console.info('result: '+ result)
+                    |    });
+                    |  });
+                    |})
+                  div.col-xs-12.col-sm-12.col-md-12(style='padding-bottom: 10px')
+          div.row
+            div.col-xs-12.col-sm-12.col-md-12(style='padding-bottom: 25px')
+      div(class='help-block')
       div.container
         div.row
-          div.col-xs-12.col-sm-12.col-md-12(id=task.question_id)
-            p(id='question')=task.question
-            - each answer in task.answers
-              div.col-xs-12.col-sm-12.col-md-12(id=task.question_id + '-' + task.answers.indexOf(answer))
-                button.btn.btn-default(id=task.question_id + '-' + task.answers.indexOf(answer), style='padding: 6px; display: inline;')=answer
-                script
-                  |$( document ).ready(function() {
-                  |  $('#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).click(function() {
-                  |    $('div#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).children('button').each(function (index, value) {
-                  |      if($('button[id^="#{task.question_id}"]').is(':animated')) { return }
-                  |      $('button[id^="#{task.question_id}"]').not('button#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).attr("disabled", "disabled")
-                  |      result['#{task.question_id}'] = #{task.answers.indexOf(answer)}
-                  |      console.info('result: '+ result)
-                  |    });
-                  |  });
-                  |})
-                div.col-xs-12.col-sm-12.col-md-12(style='padding-bottom: 10px')
-        div.row
-          div.col-xs-12.col-sm-12.col-md-12(style='padding-bottom: 25px')
-    div(class='help-block')
-    div.container
-      div.row
-        div.col-xs-12.col-sm-12.col-md-12
-          button.btn.btn-default(id='done', class='btn btn-primary center-block') Auswerten
-          script
-            |$( document ).ready(function() {
-            |  $('#done').click(function() {
-            |    var response = {}
-            |    response.pool = JSON.stringify(responsePool)
-            |    response.result = JSON.stringify(result)
-            |    response.testPool = JSON.stringify(testPool)
-            |    $.post('results', response)
-            |  })
-            |})
-    div(class='help-block')
+          div.col-xs-12.col-sm-12.col-md-12
+            button.btn.btn-default(id='done', class='btn btn-primary center-block') Auswerten
+            script
+              |$( document ).ready(function() {
+              |  $('#done').click(function() {
+              |    var response = {}
+              |    response.pool = JSON.stringify(responsePool)
+              |    response.result = JSON.stringify(result)
+              |    response.testPool = JSON.stringify(testPool)
+              |    $.post('results', response)
+              |  })
+              |})
+      div(class='help-block')
   include footer

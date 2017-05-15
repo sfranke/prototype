@@ -4,6 +4,60 @@ const database = require('./database')
 const bcrypt = require('bcrypt')
 const util = require('util')
 
+const jadepdf = require('jade-pdf2')
+const fs = require('fs')
+const path = require('path')
+
+const testData = {
+  maxAnswers: 14,
+  correctAnswers: 2,
+  percentage: 54.285714285714285,
+  pool: [
+     { '102': 1, category: 'Benutzer' },
+     { '101': 1, category: 'Benutzer' },
+     { '100': 1, category: 'Benutzer' },
+     { '112': 2, category: 'Technik' },
+     { '104': 3, category: 'Benutzer' },
+     { '110': 1, category: 'Technik' },
+     { '107': 1, category: 'Programmieren' },
+     { '105': 1, category: 'Technik' },
+     { '108': 1, category: 'Web' },
+     { '111': 0, category: 'Technik' },
+     { '106': 1, category: 'Benutzer' },
+     { '109': 0, category: 'Web' },
+     { '113': 2, category: 'Programmieren' },
+     { '103': 1, category: 'Benutzer' }
+  ],
+  result: {
+    '101': 2,
+    '102': 3,
+    '105': 2,
+    '107': 2,
+    '109': 1,
+    '112': 2,
+    '113': 2
+  },
+  categories: {
+    Benutzer: { max: 6, correct: 0 },
+    Technik: { max: 4, correct: 1 },
+    Programmieren: { max: 2, correct: 1 },
+    Web: { max: 2, correct: 0 }
+  },
+  user:
+  { _id: '590f29537259a6227ff9954b',
+    name: 'TestPerson2',
+    password: '$2a$09$ZXuyQHb46hsy.PmaVZbVoudL3iZrxRd4595zdZauuyc51ovQnRA22',
+    permission: 'user',
+    email: '2@2.2',
+    gender: 'male'
+  }
+}
+
+const options = {}
+options.phantomPath = '/home/cringer/git/zzz/prototype/node_modules/phantomjs/lib/phantom/bin/phantomjs'
+options.cssPath = path.resolve(__dirname) + '/../public/css/bootstrap.css'
+options.locals = testData
+
 router.get('/', function (req, res, next) {
   if (!req.session.user) {
     return res.redirect('/')
@@ -23,6 +77,15 @@ router.post('/', function (req, res, next) {
     let result = JSON.parse(req.body.result)
     generateStatistics(result, testPool, function (error, response) {
       // TODO: This where i want to redirect to the Results page.
+      response.user = req.session.user
+      console.log('error' + error)
+      console.log('response ' + util.inspect(response))
+      if (error) console.log('Error while statistics callback is received.\n' + error)
+      res.status(200).json(response)
+      console.log('PathTest: ' + path.resolve(__dirname))
+      fs.createReadStream(path.resolve(__dirname) + '/../views/results.jade')
+        .pipe(jadepdf(options))
+        .pipe(fs.createWriteStream('document.pdf'))
     })
   }
 })
@@ -39,9 +102,9 @@ function generateStatistics(result, testPool, callback) {
   let cleanCategories = categories.filter(function (currentValue, index) {
     return index == categories.indexOf(currentValue)
   })
-  for (var categ0ry in cleanCategories) {
+  for (let categ0ry in cleanCategories) {
     let count = 0
-    for (var cat in Object.values(categories)) {
+    for (let cat in Object.values(categories)) {
       if (cleanCategories[categ0ry] == categories[cat]) {
         ++count;
       }
