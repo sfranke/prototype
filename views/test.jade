@@ -12,7 +12,7 @@ block content
           |var testResult = []
           |responsePool['#{task.question_id}'] = #{task.solution}
           |console.info(responsePool)
-          |testPool.push({'#{task.question_id}': #{task.solution}, 'category': '#{task.category}'})
+          |testPool.push({'#{task.question_id}': #{task.solution}, 'category': '#{task.category}', 'weight': #{task.weight}})
           |console.info('TEST: ' + testPool)
 
         div.container
@@ -44,11 +44,16 @@ block content
             script
               |$( document ).ready(function() {
               |  $('#done').click(function() {
+              |    $('#test').children().hide(100)
               |    var response = {}
-              |    response.pool = JSON.stringify(responsePool)
               |    response.result = JSON.stringify(result)
               |    response.testPool = JSON.stringify(testPool)
-              |    $.post('results', response)
+              |    $.post('results', response, function (data) {
+              |      $.get('/results', JSON.stringify(data))
+              |        .done(function(data) {
+              |          $('#test').replaceWith(data)
+              |      })
+              |    })
               |  })
               |})
       div(class='help-block')

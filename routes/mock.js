@@ -11,7 +11,8 @@ db.questions.insert(
       "Ubuntu",
       "Android"
     ],
-    "solution": 1
+    "solution": 1,
+    "weight": 1.5
   }
 )
 
@@ -27,7 +28,8 @@ db.questions.insert(
       "MS Powerpoint",
       "Ms Outlook"
     ],
-    "solution": 1
+    "solution": 1,
+    "weight": 1.5
   }
 )
 
@@ -42,7 +44,8 @@ db.questions.insert(
       "Thunderbird",
       "Typo3"
     ],
-    "solution": 3
+    "solution": 3,
+    "weight": 1.5
   }
 )
 
@@ -57,7 +60,8 @@ db.questions.insert(
       "Company-Management-System zur Verwaltung von Unternehmensdaten",
       "Customs-Management-System zur Verwaltung von internationalen Warentransporten (Customs = Zoll)"
     ],
-    "solution": 0
+    "solution": 0,
+    "weight": 1.5
   }
 )
 
@@ -73,7 +77,8 @@ db.questions.insert(
       "MS Powerpoint",
       "MS Outlook"
     ],
-    "solution": 3
+    "solution": 3,
+    "weight": 1.5
   }
 )
 
@@ -88,7 +93,8 @@ db.questions.insert(
       "Ein USB-Stick",
       "Eine DVD"
     ],
-    "solution": 1
+    "solution": 1,
+    "weight": 1
   }
 )
 
@@ -103,7 +109,8 @@ db.questions.insert(
       "Thunderbird",
       "Typo3"
     ],
-    "solution": 1
+    "solution": 1,
+    "weight": 1.5
   }
 )
 
@@ -117,7 +124,8 @@ db.questions.insert(
       "Einen Programmfehler",
       "Eine bestimmte Sorte Computerviren"
     ],
-    "solution": 1
+    "solution": 1,
+    "weight": 1
   }
 )
 
@@ -132,7 +140,8 @@ db.questions.insert(
       "Captcha",
       "Morphing"
     ],
-    "solution": 1
+    "solution": 1,
+    "weight": 1
   }
 )
 
@@ -147,7 +156,8 @@ db.questions.insert(
       "Wireless Web World",
       "World WiFi Web"
     ],
-    "solution": 0
+    "solution": 0,
+    "weight": 1
   }
 )
 
@@ -162,7 +172,8 @@ db.questions.insert(
       "RJ 45",
       "USB 3"
     ],
-    "solution": 1
+    "solution": 1,
+    "weight": 1
   }
 )
 
@@ -177,7 +188,8 @@ db.questions.insert(
       "WIFI",
       "Bluetooth"
     ],
-    "solution": 0
+    "solution": 0,
+    "weight": 1
   }
 )
 
@@ -192,7 +204,8 @@ db.questions.insert(
       "TFT",
       "CRT"
     ],
-    "solution": 2
+    "solution": 2,
+    "weight": 1
   }
 )
 
@@ -208,6 +221,7 @@ db.questions.insert(
       "VB.Net",
       "JAVA"
     ],
-    "solution": 2
+    "solution": 2,
+    "weight": 1
   }
 )

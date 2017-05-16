@@ -9,17 +9,15 @@ block content
         form.form-register#registerform(method='post')
           h2.form-register-heading Please register
           |     
-          input(type="radio", name="gender", value="male", checked="male")
-          | Male
+          input(type="radio", name="gender", value="Herr", checked="male")
+          | Herr
           |     
-          input(type="radio", name="gender", value="female")
-          | Female
+          input(type="radio", name="gender", value="Frau")
+          | Frau
           |     
           label.sr-only(for='inputName') Name
           |     
-          input#inputName.form-control(type='text', name='name', placeholder='Name', required='true', autofocus='')
-          |     
-          |     
+          input#inputName.form-control(type='text', name='name', placeholder='Vor- und Nachname: Max Mustermann', required='true', autofocus='')
           |     
           label.sr-only(for='inputEmail') Email address
           |     

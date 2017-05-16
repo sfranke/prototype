@@ -8,61 +8,22 @@ const jadepdf = require('jade-pdf2')
 const fs = require('fs')
 const path = require('path')
 
-const testData = {
-  maxAnswers: 14,
-  correctAnswers: 2,
-  percentage: 54.285714285714285,
-  pool: [
-     { '102': 1, category: 'Benutzer' },
-     { '101': 1, category: 'Benutzer' },
-     { '100': 1, category: 'Benutzer' },
-     { '112': 2, category: 'Technik' },
-     { '104': 3, category: 'Benutzer' },
-     { '110': 1, category: 'Technik' },
-     { '107': 1, category: 'Programmieren' },
-     { '105': 1, category: 'Technik' },
-     { '108': 1, category: 'Web' },
-     { '111': 0, category: 'Technik' },
-     { '106': 1, category: 'Benutzer' },
-     { '109': 0, category: 'Web' },
-     { '113': 2, category: 'Programmieren' },
-     { '103': 1, category: 'Benutzer' }
-  ],
-  result: {
-    '101': 2,
-    '102': 3,
-    '105': 2,
-    '107': 2,
-    '109': 1,
-    '112': 2,
-    '113': 2
-  },
-  categories: {
-    Benutzer: { max: 6, correct: 0 },
-    Technik: { max: 4, correct: 1 },
-    Programmieren: { max: 2, correct: 1 },
-    Web: { max: 2, correct: 0 }
-  },
-  user:
-  { _id: '590f29537259a6227ff9954b',
-    name: 'TestPerson2',
-    password: '$2a$09$ZXuyQHb46hsy.PmaVZbVoudL3iZrxRd4595zdZauuyc51ovQnRA22',
-    permission: 'user',
-    email: '2@2.2',
-    gender: 'male'
-  }
-}
+var bodyParser = require('body-parser')
 
-const options = {}
-options.phantomPath = '/home/cringer/git/zzz/prototype/node_modules/phantomjs/lib/phantom/bin/phantomjs'
+let options = {}
+options.phantomPath = path.resolve(__dirname) + '/../node_modules/phantomjs/lib/phantom/bin/phantomjs'
 options.cssPath = path.resolve(__dirname) + '/../public/css/bootstrap.css'
-options.locals = testData
+options.locals = {}
 
-router.get('/', function (req, res, next) {
+router.get('/:object?', function (req, res, next) {
+  // console.log('req:\n' + util.inspect(req))
+  console.log('req.params.object:\n' + util.inspect(req.params))
+  console.log('req.params:\n' + util.inspect(req.params.maxAnswers))
   if (!req.session.user) {
     return res.redirect('/')
   } else {
-    res.render('results', {title: 'Results', session: req.session})
+    // res.render('results', {title: 'Results', options: options})
+    res.json({'Test': 'YES, HERE I AM!'})
   }
 })
 
@@ -72,16 +33,20 @@ router.post('/', function (req, res, next) {
   }
   // Only render this route if user has valid session and proper permission.
   if (req.session.user.permission === 'admin' || req.session.user.permission === 'user') {
-    let pool = JSON.parse(req.body.pool)
+    // let pool = JSON.parse(req.body.pool)
     let testPool = JSON.parse(req.body.testPool)
     let result = JSON.parse(req.body.result)
     generateStatistics(result, testPool, function (error, response) {
-      // TODO: This where i want to redirect to the Results page.
-      response.user = req.session.user
+      // Debug output.
       console.log('error' + error)
       console.log('response ' + util.inspect(response))
+      // TODO: This where i want to redirect to the Results page.
+      // Populating response object with user data.
+      response.user = req.session.user
       if (error) console.log('Error while statistics callback is received.\n' + error)
+      // Sending response object to view.
       res.status(200).json(response)
+      // TODO: Encapsulate in one function that prepares rendering and saving the pdf.
       console.log('PathTest: ' + path.resolve(__dirname))
       fs.createReadStream(path.resolve(__dirname) + '/../views/results.jade')
         .pipe(jadepdf(options))
@@ -91,6 +56,9 @@ router.post('/', function (req, res, next) {
 })
 
 // Expects the result object, the pool object and will call back a set of calculated statistics.
+// Which include 'maxAnswers', 'correctAnswers', 'percentage', the initial pool (list of questions)
+// and a 'categories' object holding an object of categories and their detail information ('max',
+// correct, points and maxPoints(per categorie)).
 function generateStatistics(result, testPool, callback) {
   let callbackResults = {}
   let maxAnswers = Object.keys(testPool).length
@@ -98,10 +66,13 @@ function generateStatistics(result, testPool, callback) {
   let myCategories = {}
 
   // Get categories and category count
-  let categories = Object.keys(testPool).map(function (question) { return testPool[question].category })
-  let cleanCategories = categories.filter(function (currentValue, index) {
-    return index == categories.indexOf(currentValue)
-  })
+  // let categories = Object.keys(testPool).map(function (question) { return testPool[question].category })
+  const categories = Object.keys(testPool).map((question) => { return testPool[question].category })
+  // let cleanCategories = categories.filter(function (currentValue, index) {
+  //   return index == categories.indexOf(currentValue)
+  // })
+  const cleanCategories = categories.filter((currentValue, index) => { return index == categories.indexOf(currentValue) })
+
   for (let categ0ry in cleanCategories) {
     let count = 0
     for (let cat in Object.values(categories)) {
@@ -110,31 +81,47 @@ function generateStatistics(result, testPool, callback) {
       }
     }
     myCategories[cleanCategories[categ0ry]] = {}
+    myCategories[cleanCategories[categ0ry]].category = cleanCategories[categ0ry]
     myCategories[cleanCategories[categ0ry]].max = count
     myCategories[cleanCategories[categ0ry]].correct = 0
+    myCategories[cleanCategories[categ0ry]].points = 0
+    myCategories[cleanCategories[categ0ry]].maxPoints = 0
   }
+
+  testPool.forEach(function (testPoolQuestion) {
+    // console.log('testPoolQuestion: ' + util.inspect(testPoolQuestion))
+    // console.log('testPool category: ' + testPoolQuestion.category)
+    // console.log('testPool weight: ' + testPoolQuestion.weight)
+    myCategories[testPoolQuestion.category].maxPoints = myCategories[testPoolQuestion.category].maxPoints + (1 * testPoolQuestion.weight)
+  })
+
   // Check correctness of the result object in comparison to the pool.
   // For each element in the result object iterate over the pool and check for equality.
-  // If found add to the points a user can get, sum them up and save then into one object.
+  // If found add to the points a user can get, sum them up and save then into one categories object.
   for (let key in result) {
     testPool.forEach(function (question) {
       if (question.hasOwnProperty(key)) {
         const vals = Object.keys(question).map(key => question[key])
         if(result[key] == vals[0]) {
+          // Adding up correct answers.
           correctAnswers++
           myCategories[vals[1]].correct = myCategories[vals[1]].correct + 1
+          // Adding up points depending on the weight of each answer.
+          myCategories[vals[1]].points = myCategories[vals[1]].points + (1 * vals[2])
         }
       }
     })
   }
+
   // Accumulate all data into one single object that we can use to propagate the result page.
   // TODO: Username and gender are missing here. Please add.
   callbackResults.maxAnswers = maxAnswers
   callbackResults.correctAnswers = correctAnswers
-  callbackResults.percentage = (correctAnswers / maxAnswers) * 100
+  callbackResults.percentage = ((correctAnswers / maxAnswers) * 100).toFixed(0)
   callbackResults.pool = testPool
   callbackResults.result = result
   callbackResults.categories = myCategories
+  options.locals = callbackResults
   // TODO: Debug output.. please remove.
   console.log('Results:\n' + util.inspect(callbackResults))
   callback(null, callbackResults)

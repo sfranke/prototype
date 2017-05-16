@@ -1,6 +1,7 @@
 div.container
   row
     h1 Eignungstest
+
 div.container
   row
     p=locals.user.gender + ' ' + locals.user.name
@@ -11,6 +12,15 @@ div.container
     p und hat damit den Test bestanden.
   - else
     p und hat damit den Test nicht bestanden.
+
 div.container
   row
     p Die erreichten Punkte setzen sich wie folgt zusammen:
+    
+div.container
+  row
+    p
+      span='Gesamt' 
+
+  - each entry in locals.categories
+    p='In der Kategorie ' + entry.category + ' - ' + entry.points + ' von ' + entry.maxPoints + ' Punkten'
