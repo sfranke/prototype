@@ -225,3 +225,23 @@ db.questions.insert(
     "weight": 1
   }
 )
+
+/*
+db.questions.insert(
+  {
+    "question_id" : 100,
+    "category": "Benutzer",
+    "question": "Welches Programm ist KEIN Betriebssystem",
+    "answers": [
+      "MS Windows",
+      "Joomla",
+      "IOS",
+      "Ubuntu",
+      "Android"
+    ],
+    "solution": 1,
+    "weight": 1.5
+  }
+)
+*/
+
