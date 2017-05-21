@@ -275,7 +275,6 @@ db.questions.insert(
   }
 )
 
-//T
 db.questions.insert(
   {
     "question_id" : 117,
@@ -290,7 +289,6 @@ db.questions.insert(
   }
 )
 
-//I'm not sure about to define 2 right Answers like that is the right way
 db.questions.insert(
   {
     "question_id" : 118,
@@ -302,7 +300,7 @@ db.questions.insert(
       "Ronald",
       "Frank & Albert"
     ],
-    "solution": 3,
+    "solution": 1,
     "weight": 2
   }
 )
@@ -377,24 +375,11 @@ db.questions.insert(
 )
 
 //Testteil UNKNOWN | Zahlenreihen | ? Pkt insgesamt | 15 min
-/*
-## seem's that there must be another way to implement the task-instructions
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## Zahlenreihen 
-## Task :
-## Jede Folge von Zahlen ist nach bestimmten Regeln aufgebaut. 
-## Die Zahlenfolge kann sich aus einer einzigen Gruppe oder aus mehreren Gruppen zusammensetzen. 
-## Vorzeichen und Rechnoperationen können mehrfach wechseln.
-##
-## Tipp! Schreiben Sie unterhalb der Zahlenreihen zwischen den Zahlen die von Ihnen ermittelten bzw. vermuteten Rechenoperationen.                                                                                    
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
-
 db.questions.insert(
   {
     "question_id" : 123,
     "category": "Zahlenreihen",
-    "question": "5    7    4    6    3    ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 5    7    4    6    3    ?",
     "answers": [
       "",
       "",
@@ -411,7 +396,7 @@ db.questions.insert(
   {
     "question_id" : ´124,
     "category": "Zahlenreihen",
-    "question": "72    61    48    ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 72    61    48    ?",
     "answers": [
       "",
       "",
@@ -428,7 +413,7 @@ db.questions.insert(
   {
     "question_id" : 125,
     "category": "Zahlenreihen",
-    "question": "75    15    25    5    15    ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 75    15    25    5    15    ?",
     "answers": [
       "",
       "",
@@ -445,7 +430,7 @@ db.questions.insert(
   {
     "question_id" : 126,
     "category": "Zahlenreihen",
-    "question": "8    5    15    18     6    3    9   ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 8    5    15    18     6    3    9   ?",
     "answers": [
       "",
       "",
@@ -462,7 +447,7 @@ db.questions.insert(
   {
     "question_id" : 127,
     "category": "Zahlenreihen",
-    "question": "1    2    4    2    4    8    6    ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 1    2    4    2    4    8    6    ?",
     "answers": [
       "",
       "",
@@ -479,7 +464,7 @@ db.questions.insert(
   {
     "question_id" : 128,
     "category": "Zahlenreihen",
-    "question": "3    6    18    36    108    216    ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 3    6    18    36    108    216    ?",
     "answers": [
       "",
       "",
@@ -496,7 +481,7 @@ db.questions.insert(
   {
     "question_id" : 129,
     "category": "Zahlenreihen",
-    "question": "-56    -33    -21,5    -15,75    ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : -56    -33    -21,5    -15,75    ?",
     "answers": [
       "",
       "",
@@ -513,7 +498,7 @@ db.questions.insert(
   {
     "question_id" : 130,
     "category": "Zahlenreihen",
-    "question": "8,5    4,25    6,25    12,5    10,5    5,25    ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 8,5    4,25    6,25    12,5    10,5    5,25    ?",
     "answers": [
       "",
       "",
@@ -530,7 +515,7 @@ db.questions.insert(
   {
     "question_id" : 131,
     "category": "Zahlenreihen",
-    "question": "312    78    26    13    ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 312    78    26    13    ?",
     "answers": [
       "",
       "",
@@ -548,7 +533,7 @@ db.questions.insert(
   {
     "question_id" : 132,
     "category": "Zahlenreihen",
-    "question": "3/2    2,2    3,1    4 1/5    5 1/2    ?",
+    "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 3/2    2,2    3,1    4 1/5    5 1/2    ?",
     "answers": [
       "",
       "",
@@ -670,31 +655,23 @@ db.questions.insert(
     "category": "Dreisatz - Zinsrechnung",
     "question": "Zwei Wasserpumpen fördern in 12 Stunden 2.400 Liter Wasser. Wieviel Liter fördern 5 Pumpen in 5 Stunden?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "2500",
+      "4200",
+      "1500",
+      "3600",
+      "1250"
     ],
-    "solution": ,
+    "solution": 0,
     "weight": 2
   }
 )
 
-/*
-## seem's that there must be another way to implement the task-instructions
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## Gemeinsamkeiten - Abstraktionsfähigkeit 
-## Task :
-## Suchen Sie bei den folgenden Begriffspaaren jeweils das passende wort, indem Sie die "?" durch einen der Begriffe a bis d ersetzen. Kreuzen Sie die richtige Lösung an.
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
 //Testteil C | Gemeinsamkeiten finden Abstraktionsfähigkeit und Bildung von Begriffen | 10 Pkt insgesamt | 2 min.
 db.questions.insert(
   {
     "question_id" : 140,
     "category": "Gemeinsamkeiten",
-    "question": "Kostüm - Frau  Anzug - ?",
+    "question": "Suchen Sie bei den folgenden Begriffspaaren jeweils das passende wort, indem Sie die ? durch einen der Begriffe ersetzen: Kostüm - Frau  Anzug - ?",
     "answers": [
       "Mann",
       "Oma",
@@ -705,11 +682,12 @@ db.questions.insert(
     "weight": 1
   }
 )
+
 db.questions.insert(
   {
     "question_id" : 141,
     "category": "Gemeinsamkeiten",
-    "question": "Pflanze - Rose   ? - Tiger",
+    "question": "Suchen Sie bei den folgenden Begriffspaaren jeweils das passende wort, indem Sie die ? durch einen der Begriffe ersetzen: Pflanze - Rose   ? - Tiger",
     "answers": [
       "Fauna",
       "Lebewesen",
@@ -725,7 +703,7 @@ db.questions.insert(
   {
     "question_id" : 142,
     "category": "Gemeinsamkeiten",
-    "question": "Bein - Kniegelenk  Arm - ?",
+    "question": "Suchen Sie bei den folgenden Begriffspaaren jeweils das passende wort, indem Sie die ? durch einen der Begriffe ersetzen: Bein - Kniegelenk  Arm - ?",
     "answers": [
       "Pickel",
       "Ellenbogen",
@@ -741,7 +719,7 @@ db.questions.insert(
   {
     "question_id" : 143,
     "category": "Gemeinsamkeiten",
-    "question": "Dekade - 10 Monate  Semester - ?",
+    "question": "Suchen Sie bei den folgenden Begriffspaaren jeweils das passende wort, indem Sie die ? durch einen der Begriffe ersetzen: Dekade - 10 Monate  Semester - ?",
     "answers": [
       "Sixpack",
       "6 Tage",
@@ -757,7 +735,7 @@ db.questions.insert(
   {
     "question_id" : 144,
     "category": "Gemeinsamkeiten",
-    "question": "Flamme - Kerze   ? - Lampe",
+    "question": "Suchen Sie bei den folgenden Begriffspaaren jeweils das passende wort, indem Sie die ? durch einen der Begriffe ersetzen: Flamme - Kerze   ? - Lampe",
     "answers": [
       "Glühwurm",
       "Glycerin",
@@ -774,7 +752,7 @@ db.questions.insert(
   {
     "question_id" : 145,
     "category": "Abstraktionsfähigkeit",
-    "question": "Quadrat Rechteck Würfel Dreieck",
+    "question": "Wählen Sie bitte den Begriff der nicht mit den anderen Begriffen übereinstimmt : Quadrat Rechteck Würfel Dreieck",
     "answers": [
       "Quadrat",
       "Würfel",
@@ -790,7 +768,7 @@ db.questions.insert(
   {
     "question_id" : 146,
     "category": "Abstraktionsfähigkeit",
-    "question": "Fluß Bach See Strom",
+    "question": "Wählen Sie bitte den Begriff der nicht mit den anderen Begriffen übereinstimmt : Fluß Bach See Strom",
     "answers": [
       "Fluß",
       "See",
@@ -806,7 +784,7 @@ db.questions.insert(
   {
     "question_id" : 147,
     "category": "Abstraktionsfähigkeit",
-    "question": "Saft Milch Tee Alkohol",
+    "question": "Wählen Sie bitte den Begriff der nicht mit den anderen Begriffen übereinstimmt : Saft Milch Tee Alkohol",
     "answers": [
       "Alkohol",
       "Milch",
@@ -822,7 +800,7 @@ db.questions.insert(
   {
     "question_id" : 148,
     "category": "Abstraktionsfähigkeit",
-    "question": "Papier Buch Zeitung Roman",
+    "question": "Wählen Sie bitte den Begriff der nicht mit den anderen Begriffen übereinstimmt : Papier Buch Zeitung Roman",
     "answers": [
       "Buch",
       "Zeitung",
@@ -838,7 +816,7 @@ db.questions.insert(
   {
     "question_id" : 149,
     "category": "Abstraktionsfähigkeit",
-    "question": "Pullover Wolle Strumpf Jacke",
+    "question": "Wählen Sie bitte den Begriff der nicht mit den anderen Begriffen übereinstimmt : Pullover Wolle Strumpf Jacke",
     "answers": [
       "Jacke",
       "Wolle",
