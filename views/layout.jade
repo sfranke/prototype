@@ -44,8 +44,8 @@ html(lang='en')
             |             
             span.icon-bar
           |           
-          a.navbar-brand(href='/') Service
-            span#timeNow=moment(date).format(" HH:mm:ss")
+          a.navbar-brand(href='/') Eignungstest
+            //- span#timeNow=moment(date).format(" HH:mm:ss")
             script
                 |$(function () {
                 |  var socket = io.connect();
@@ -121,8 +121,8 @@ html(lang='en')
               li
                 a(href='/users') Users
             | 
-            li
-              a(href='/about') About
+            //- li
+            //-   a(href='/about') About
 
     div(style="height: 75px;")
 block content
