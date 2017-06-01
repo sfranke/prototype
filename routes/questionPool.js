@@ -10,6 +10,10 @@ let maxAmountOfQuestions = database.getQuestionCount(function (error, result) {
 let testIndexes = []
 let pool = []
 
+let lowest = 0
+let highest = 0
+let amountOfQuestions = 0
+
 function questionPool() {
   this.pool = []
 }
@@ -19,17 +23,45 @@ function questionPool() {
 // will be filled with questions from the database. In the end this question pool is being returned to the
 // calling scope with in a callback.
 questionPool.getPool = function (questionPool, amount, callback) {
-  createUniqueNumbers(testIndexes)
-  async.mapValues(testIndexes,
-    function (file, key, callback) {
-      database.getQuestionById(file, function (error, question) {
-        if(error) callback(error, null)
-        callback(null, question)
+  amountOfQuestions = amount
+  async.series([
+    function(callback) {
+      database.getLowestId(function(error, response) {
+        if (error) console.log('Error while fetching lowest question_id.' + error)
+        lowest = response.question_id
+        callback()
       })
     },
-    function (error, results) {
-      if(error) callback(error, null)
-      callback(null, results)
+    function(callback) {
+      database.getHighestId(function(error, response) {
+        if (error) console.log('Error while fetching highest question_id.' + error)
+        highest = response.question_id
+        callback()
+      })
+    },
+    function(callback) {
+      let randomNumber = getRandomIndex(lowest, highest)
+      for(i = testIndexes.length; i < amountOfQuestions; i++) {
+        if (testIndexes.indexOf(randomNumber) == -1) {
+          testIndexes[i] = randomNumber
+        } else {
+          createUniqueNumbers(testIndexes)
+        }
+      }
+      callback()
+    }
+  ],function(error, results) {
+    async.mapValues(testIndexes,
+      function (file, key, callback) {
+        database.getQuestionById(file, function (error, question) {
+          if(error) callback(error, null)
+          callback(null, question)
+        })
+      },
+      function (error, results) {
+        if(error) callback(error, null)
+        callback(null, results)
+    })
   })
 }
 
@@ -38,8 +70,8 @@ questionPool.getPool = function (questionPool, amount, callback) {
 // TODO: This is a recursive function which might lead to performance issues depending on
 // the size of the question pool.
 function createUniqueNumbers(testIndexes) {
-  let randomNumber = getRandomIndex(100, 113)
-  for(i = testIndexes.length; i < maxAmountOfQuestions; i++) {
+  let randomNumber = getRandomIndex(lowest, highest)
+  for(i = testIndexes.length; i < amountOfQuestions; i++) {
     if (testIndexes.indexOf(randomNumber) == -1) {
       testIndexes[i] = randomNumber
     } else {

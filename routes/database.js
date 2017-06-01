@@ -138,7 +138,7 @@ database.getQuestionById = function (question_id, callback) {
     if (err) console.log('error', 'While connecting to DB during getQuestionById.')
     var collection = db.collection('questions')
     collection.find({'question_id': question_id}).limit(1).next(function (error, doc) {
-      if (error) callback(error, null)
+      if (error) console.log('Error during getQuestionById.' + err)
       if (doc != null) {
         callback(null, doc)
         db.close()
@@ -162,6 +162,40 @@ database.getQuestionCount = function (callback) {
         db.close()
       } else {
         callback({'error': 'No questions found.'}, null)
+        db.close()
+      }
+    })
+  })
+}
+
+database.getLowestId = function (callback) {
+  mongoClient.connect(uri, function (err, db) {
+    if (err) console.log('error', 'While retrieving lowest document Id.')
+    let collection = db.collection('questions')
+    collection.find().sort({_id: 1}).limit(1).next(function(err, doc) {
+      if (err) console.log('Error while retrieving highest document Id.' + err)
+      if (doc != null) {
+        callback(null, doc)
+        db.close()
+      } else {
+        callback({'error': 'Question not found.'}, null)
+        db.close()
+      }
+    })
+  })
+}
+
+database.getHighestId = function (callback) {
+  mongoClient.connect(uri, function (err, db) {
+    if (err) console.log('error', 'While retrieving highest document Id.')
+    let collection = db.collection('questions')
+    collection.find().sort({_id: -1}).limit(1).next(function(err, doc) {
+      if (err) console.log('Error while retrieving highest document Id.' + err)
+      if (doc != null) {
+        callback(null, doc)
+        db.close()
+      } else {
+        callback({'error': 'Question not found.'}, null)
         db.close()
       }
     })
