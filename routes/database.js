@@ -143,7 +143,7 @@ database.getQuestionById = function (question_id, callback) {
         callback(null, doc)
         db.close()
       } else {
-        callback({'error': 'Question not found.'}, null)
+        callback({'error': 'Question not found (getQuestionById).'}, null)
         db.close()
       }
     })
@@ -178,7 +178,7 @@ database.getLowestId = function (callback) {
         callback(null, doc)
         db.close()
       } else {
-        callback({'error': 'Question not found.'}, null)
+        callback({'error': 'Question not found (getLowestId).'}, null)
         db.close()
       }
     })
@@ -195,7 +195,7 @@ database.getHighestId = function (callback) {
         callback(null, doc)
         db.close()
       } else {
-        callback({'error': 'Question not found.'}, null)
+        callback({'error': 'Question not found (getHighestId).'}, null)
         db.close()
       }
     })
