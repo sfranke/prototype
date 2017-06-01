@@ -1,3 +1,16 @@
 extends layout
 
 block content
+  link(href='stylesheets/style.css', rel='stylesheet')
+  div(style="margin: auto;").container
+    br
+    br
+    br
+    row
+      img(src="../images/CBM_logo.svg" style="display: block; margin: auto;")#logo
+    row
+      h1(style="text-align: center;")#welcomeHeadline Willkommen zum Eignungstest
+    row
+      p(style="text-align: center;")#welcomeText Bitte melden sie sich an oder registrieren sie sich. Der Test startet im Anschluss automatisch.
+
+  include footer
