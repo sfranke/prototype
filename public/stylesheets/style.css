@@ -13,7 +13,7 @@ div.mastfoot {
 
 #content {
   display: table-cell;
-  vertical-align: middle
+  vertical-align: middle;
 }
 
 #logo {
@@ -22,4 +22,9 @@ div.mastfoot {
    /*margin-left: auto;
    margin-right: auto;*/
    /*width: 1%;*/
+}
+
+#registerform {
+   display: block;
+   margin: auto;
 }

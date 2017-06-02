@@ -66,16 +66,16 @@ html(lang='en')
                 .form-group
                   input.form-control(type='password', name='password', placeholder='Password')
                 |         
-                button.btn.btn-success(type='submit') Sign in
+                button.btn.btn-success(type='submit') Anmelden
                 |         
                 - if (locals.registerState === false)
-                  button.btn.btn-warning(type='button' style='display: none;')#registerbtn Register
+                  button.btn.btn-warning(type='button' style='display: none;')#registerbtn Registrieren
                   script
                     |$('#registerbtn').click(function(){
                     |  window.location='register'
                     |});
                 - if (locals.registerState === true)
-                  button.btn.btn-warning(type='button')#registerbtn Register
+                  button.btn.btn-warning(type='button')#registerbtn Registrieren
                   script
                     |$('#registerbtn').click(function(){
                     |  window.location='register'
@@ -84,9 +84,9 @@ html(lang='en')
             - if (session != undefined && session.user != undefined)
               a#username.navbar-brand.navbar-right #{session.user.name}
               form.navbar-form.navbar-right(method='post', action='/logout')
-                button.btn.btn-danger(type='submit')#logOut Logout
+                button.btn.btn-danger(type='submit')#logOut Abmelden
                 |         
-                button.btn.btn-success(type='button' style='display: none;')#enableregisterbtn Enable Registration
+                button.btn.btn-success(type='button' style='display: none;')#enableregisterbtn Registrierung An
                 script
                   |$('#enableregisterbtn').click(function(){
                   |  $.post('/register/toggle', function(data) {
@@ -102,7 +102,7 @@ html(lang='en')
                     |$( document ).ready(function() {
                     |  $('#enableregisterbtn').show()
                     |});
-                button.btn.btn-danger(type='button' style='display: none;')#disableregisterbtn Disable Registration
+                button.btn.btn-danger(type='button' style='display: none;')#disableregisterbtn Registrierung Aus
                 script
                   |$('#disableregisterbtn').click(function(){
                   |  $.post('/register/toggle', function(data) {
@@ -120,7 +120,7 @@ html(lang='en')
                     |});
             - if (session != undefined && session.user != undefined && session.user.permission === 'admin')
               li
-                a(href='/users') Users
+                a(href='/users') Benutzer
             | 
             //- li
             //-   a(href='/about') About
