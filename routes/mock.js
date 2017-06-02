@@ -380,13 +380,13 @@ db.questions.insert(
     "category": "Zahlenreihen",
     "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 72    61    48    ?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "34",
+      "33",
+      "35",
+      "37",
+      "36"
     ],
-    "solution": 8,
+    "solution": 1,
     "weight": 2
   }
 )
@@ -397,13 +397,13 @@ db.questions.insert(
     "category": "Zahlenreihen",
     "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 75    15    25    5    15    ?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "3",
+      "25",
+      "5",
+      "18",
+      "10"
     ],
-    "solution": 8,
+    "solution": 0,
     "weight": 2
   }
 )
@@ -414,13 +414,13 @@ db.questions.insert(
     "category": "Zahlenreihen",
     "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 8    5    15    18     6    3    9   ?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "27",
+      "3",
+      "6",
+      "18",
+      "12"
     ],
-    "solution": 8,
+    "solution": 4,
     "weight": 2
   }
 )
@@ -431,13 +431,13 @@ db.questions.insert(
     "category": "Zahlenreihen",
     "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 1    2    4    2    4    8    6    ?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "4",
+      "10",
+      "2",
+      "12",
+      "13"
     ],
-    "solution": 8,
+    "solution": 3,
     "weight": 2
   }
 )
@@ -448,13 +448,13 @@ db.questions.insert(
     "category": "Zahlenreihen",
     "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 3    6    18    36    108    216    ?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "432",
+      "72",
+      "648",
+      "108",
+      "9,1818181818"
     ],
-    "solution": 8,
+    "solution": 2,
     "weight": 2
   }
 )
@@ -465,13 +465,13 @@ db.questions.insert(
     "category": "Zahlenreihen",
     "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : -56    -33    -21,5    -15,75    ?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "-13,163",
+      "-13,172",
+      "-12,965",
+      "-18,625",
+      "-12,875"
     ],
-    "solution": 8,
+    "solution": 4,
     "weight": 2
   }
 )
@@ -482,13 +482,13 @@ db.questions.insert(
     "category": "Zahlenreihen",
     "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 8,5    4,25    6,25    12,5    10,5    5,25    ?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "10,5",
+      "7,25",
+      "2,625",
+      "3,25",
+      "8,25"
     ],
-    "solution": 8,
+    "solution": 1,
     "weight": 2
   }
 )
@@ -499,13 +499,13 @@ db.questions.insert(
     "category": "Zahlenreihen",
     "question": "Lösen Sie bitte folgende Zahlenreihe anhand der richtigen mathematischen Operation : 312    78    26    13    ?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "1",
+      "6,5",
+      "12",
+      "14",
+      "13"
     ],
-    "solution": 8,
+    "solution": 4,
     "weight": 2
   }
 )
@@ -533,13 +533,13 @@ db.questions.insert(
     "category": "Dreisatz - Zinsrechnung",
     "question": "In einer Schule sind 800 Umschüler/innen. 17,5 % sind in der Prüfungsvorbereitung, davon sind 45 % IT-Systemkaufleute. Wieviel IT-Systemkaufleute sind in der Prüfungsvorbereitung?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "63",
+      "66",
+      "36",
+      "33",
+      "500"
     ],
-    "solution": 8,
+    "solution": 0,
     "weight": 2
   }
 )
@@ -550,13 +550,13 @@ db.questions.insert(
     "category": "Dreisatz - Zinsrechnung",
     "question": "Ein Auto verlor im ersten Jahr seiner Nutzung 30% seines Neuwertes und wird jetzt für 8.050 € verkauft. Wie hoch war der Neuwert des Wagens?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "11465,00 €",
+      "11050,00 €",
+      "10465,00 €",
+      "10406,50 €",
+      "10460,50 €"
     ],
-    "solution": 8,
+    "solution": 2,
     "weight": 2
   }
 )
@@ -565,15 +565,15 @@ db.questions.insert(
   {
     "question_id" : 134,
     "category": "Dreisatz - Zinsrechnung",
-    "question": "Der Preis für einen Computer wird zuerst um 20% gesenkt, eine Woche darauf um wird er um weiter 5% gesenkt. Jetzt kostet er 1.140 €. Wie hoch war der ursprüngliche Preis?",
+    "question": "Der Preis für einen Computer wird zuerst um 20% gesenkt, eine Woche darauf um wird er um weitere 5% gesenkt. Jetzt kostet er 1.140 €. Wie hoch war der ursprüngliche Preis?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "1365,00 €",
+      "1245,00 €",
+      "1425,00 €",
+      "1634,00 €",
+      "1436,40 €"
     ],
-    "solution": 8,
+    "solution": 4,
     "weight": 2
   }
 )
@@ -584,13 +584,13 @@ db.questions.insert(
     "category": "Dreisatz - Zinsrechnung",
     "question": "4.000 € bringen in 8 Monaten genau 240 € Zinsen. Wie hoch ist der Zinssatz?",
     "answers": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "12 %",
+      "26,666667 %",
+      "3 %",
+      "9 %",
+      "6 %"
     ],
-    "solution": 8,
+    "solution": 3,
     "weight": 2
   }
 )
@@ -601,11 +601,11 @@ db.questions.insert(
     "category": "Dreisatz - Zinsrechnung",
     "question": "Wieviel € Zinsen kostet ein Kredit von 600 € für eine Laufzeit von 60 Tagen zu 7.5% ?",
     "answers": [
-      "603,75",
-      "302,82",
-      "302,44",
-      "3028,15",
-      "30,28"
+      "603,75 €",
+      "302,82 €",
+      "302,44 €",
+      "3028,15 €",
+      "30,28 €"
     ],
     "solution": 1,
     "weight": 2
@@ -618,11 +618,11 @@ db.questions.insert(
     "category": "Dreisatz - Zinsrechnung",
     "question": "Ein Darlehen wird mit 6,5% verzinst, Die Halbjahreszinsen betragen 146,25 €. Wie hoch ist das Darlehen?",
     "answers": [
-      "136,74375",
-      "95,0625",
-      "9,50625",
-      "2250",
-      "2253,846154"
+      "136,74375 €",
+      "95,0625 €",
+      "9,50625 €",
+      "2250 €",
+      "2253,846154 €"
     ],
     "solution": 3,
     "weight": 2
@@ -635,11 +635,11 @@ db.questions.insert(
     "category": "Dreisatz - Zinsrechnung",
     "question": "Zwei Wasserpumpen fördern in 12 Stunden 2.400 Liter Wasser. Wieviel Liter fördern 5 Pumpen in 5 Stunden?",
     "answers": [
-      "2500",
-      "4200",
-      "1500",
-      "3600",
-      "1250"
+      "2500 Liter",
+      "4200 Liter",
+      "1500 Liter",
+      "3600 Liter",
+      "1250 Liter"
     ],
     "solution": 0,
     "weight": 2
