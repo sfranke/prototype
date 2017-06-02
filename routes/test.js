@@ -6,8 +6,6 @@ const util = require('util')
 const Question = require('./question')
 const QuestionPool = require('./questionPool')
 
-let pool = require('./pool.json')
-
 let poolSize = 12
 
 /* GET home page. */
@@ -19,7 +17,7 @@ router.get('/', function(req, res, next) {
   // Only render this route if user has valid session and proper permission.
   if (req.session.user.permission === 'admin' || req.session.user.permission === 'user') {
     let testPool = new QuestionPool()
-    QuestionPool.getPool(pool, poolSize, function(error, questionPool) {
+    QuestionPool.getPool(testPool, poolSize, function(error, questionPool) {
       if(error) console.log(error)
       // Render site here to make sure the questionPool is ready to use before the site gets rendered.
       res.render('test', {title: 'test', name: undefined, session: req.session, pool: questionPool})
