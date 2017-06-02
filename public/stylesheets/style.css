@@ -3,3 +3,23 @@ div.mastfoot {
   bottom: 0;
   width: 100%;
 }
+
+#main {
+  display: table;
+  position: absolute;
+  height: 50%;
+  width: 100%;
+}
+
+#content {
+  display: table-cell;
+  vertical-align: middle
+}
+
+#logo {
+   display: block;
+   margin: auto;
+   /*margin-left: auto;
+   margin-right: auto;*/
+   /*width: 1%;*/
+}

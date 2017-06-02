@@ -6786,4 +6786,10 @@ button.close {
 #navbar {
   background-color: #9d9fa2;
   border-color: #9d9fa2;
+  height: 200%;
+}
+
+#navbarLogo {
+  width: 34%;
+  height: 100%;
 }
