@@ -5,7 +5,7 @@ div.container
 div.container
   row
     p=locals.user.gender + ' ' + locals.user.name
-    p erreichte am *heute* im CBM-Eignungstest
+    p erreichte am #{time} im CBM-Eignungstest
   row
     p=locals.percentage + ' Prozent'
   - if (locals.percentage > 50)

@@ -49,10 +49,8 @@ block content
               |    response.result = JSON.stringify(result)
               |    response.testPool = JSON.stringify(testPool)
               |    $.post('results', response, function (data) {
-              |      $.get('/results', JSON.stringify(data))
-              |        .done(function(data) {
-              |          $('#test').replaceWith(data)
-              |      })
+              |      $("#test").html(data)
+              |      $("html, body").animate({ scrollTop: $(document).height() }, 1000);
               |    })
               |  })
               |})

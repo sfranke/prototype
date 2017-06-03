@@ -246,8 +246,8 @@ db.questions.insert(
 db.questions.insert(
   {
     "question_id" : 115,
-    "category": "Wer ist der Jüngste? Alfred ist älter als Bertha. Bertha ist älter als Charlotte, aber jünger als Dorothea. Dorothea ist älter als Alfred",
-    "question": "Relationen",
+    "category": "Relationen",
+    "question": "Wer ist der Jüngste? Alfred ist älter als Bertha. Bertha ist älter als Charlotte, aber jünger als Dorothea. Dorothea ist älter als Alfred",
     "answers": [
       "Dorothea",
       "Bertha",

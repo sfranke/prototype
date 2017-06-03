@@ -15,15 +15,27 @@ options.phantomPath = path.resolve(__dirname) + '/../node_modules/phantomjs/lib/
 options.cssPath = path.resolve(__dirname) + '/../public/css/bootstrap.css'
 options.locals = {}
 
-router.get('/:object?', function (req, res, next) {
-  // console.log('req:\n' + util.inspect(req))
-  console.log('req.params.object:\n' + util.inspect(req.params))
-  console.log('req.params:\n' + util.inspect(req.params.maxAnswers))
+// Returns the current date preformatted for germans.
+getCurrentDate = function() {
+  let today = new Date()
+  let dd = today.getDate()
+  let mm = today.getMonth() + 1
+  let yyyy = today.getFullYear()
+  if(dd<10) {
+      dd='0'+dd
+  }
+  if(mm<10) {
+      mm='0'+mm
+  }
+  return today = dd + '.' + mm + '.' + yyyy
+}
+
+router.get('/', function (req, res, next) {
+  let locals = options.locals
   if (!req.session.user) {
     return res.redirect('/')
   } else {
-    // res.render('results', {title: 'Results', options: options})
-    res.json({'Test': 'YES, HERE I AM!'})
+    return res.render('result', {locals: locals, time: getCurrentDate()})
   }
 })
 
@@ -33,25 +45,20 @@ router.post('/', function (req, res, next) {
   }
   // Only render this route if user has valid session and proper permission.
   if (req.session.user.permission === 'admin' || req.session.user.permission === 'user') {
-    // let pool = JSON.parse(req.body.pool)
     let testPool = JSON.parse(req.body.testPool)
     let result = JSON.parse(req.body.result)
     generateStatistics(result, testPool, function (error, response) {
-      // Debug output.
-      console.log('error' + error)
-      console.log('response ' + util.inspect(response))
       // TODO: This where i want to redirect to the Results page.
       // Populating response object with user data.
       response.user = req.session.user
       if (error) console.log('Error while statistics callback is received.\n' + error)
-      // Sending response object to view.
-      res.status(200).json(response)
       // TODO: Encapsulate in one function that prepares rendering and saving the pdf.
-      console.log('PathTest: ' + path.resolve(__dirname))
+      options.locals.time = getCurrentDate()
       fs.createReadStream(path.resolve(__dirname) + '/../views/results.jade')
         .pipe(jadepdf(options))
-        .pipe(fs.createWriteStream('document.pdf'))
+        .pipe(fs.createWriteStream(new Date().getTime() + '_' + response.user.name + '_' + 'document.pdf'))
     })
+    res.redirect('/results')
   }
 })
 
@@ -123,7 +130,7 @@ function generateStatistics(result, testPool, callback) {
   callbackResults.categories = myCategories
   options.locals = callbackResults
   // TODO: Debug output.. please remove.
-  console.log('Results:\n' + util.inspect(callbackResults))
+  // console.log('Results:\n' + util.inspect(callbackResults))
   callback(null, callbackResults)
 }
 

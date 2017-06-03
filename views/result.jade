@@ -1,0 +1,31 @@
+div.container
+  link(href='stylesheets/style.css', rel='stylesheet')
+  div#main
+    div#content
+      row
+        img(src="../images/CBM_logo.svg")#logo
+      row
+        h1(style="text-align: center;") Eignungstest
+
+        div.container(style="text-align: center;")
+          row
+            p=locals.locals.user.gender + ' ' + locals.locals.user.name
+            p erreichte am #{time} im CBM-Eignungstest
+          row
+            p=locals.locals.percentage + ' Prozent'
+          - if (locals.percentage > 50)
+            p und hat damit den Test bestanden.
+          - else
+            p und hat damit den Test nicht bestanden.
+
+        div.container(style="text-align: center;")
+          row
+            p Die erreichten Punkte setzen sich wie folgt zusammen:
+            
+        div.container(style="text-align: center; padding-bottom: 100px")
+          row
+            p
+              span='Gesamt' 
+
+          - each entry in locals.locals.categories
+            p='In der Kategorie ' + entry.category + ' - ' + entry.points + ' von ' + entry.maxPoints + ' Punkten'
