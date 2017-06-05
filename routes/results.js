@@ -35,6 +35,7 @@ router.get('/', function (req, res, next) {
   if (!req.session.user) {
     return res.redirect('/')
   } else {
+    console.log('results object:\n' + util.inspect(locals))
     return res.render('result', {locals: locals, time: getCurrentDate()})
   }
 })
@@ -71,6 +72,7 @@ function generateStatistics(result, testPool, callback) {
   let maxAnswers = Object.keys(testPool).length
   let correctAnswers = 0
   let myCategories = {}
+  let overall = [0.0, 0.0]
 
   // Get categories and category count
   // let categories = Object.keys(testPool).map(function (question) { return testPool[question].category })
@@ -100,6 +102,7 @@ function generateStatistics(result, testPool, callback) {
     // console.log('testPool category: ' + testPoolQuestion.category)
     // console.log('testPool weight: ' + testPoolQuestion.weight)
     myCategories[testPoolQuestion.category].maxPoints = myCategories[testPoolQuestion.category].maxPoints + (1 * testPoolQuestion.weight)
+    overall[1] = overall[1] + (1 * testPoolQuestion.weight)
   })
 
   // Check correctness of the result object in comparison to the pool.
@@ -115,6 +118,7 @@ function generateStatistics(result, testPool, callback) {
           myCategories[vals[1]].correct = myCategories[vals[1]].correct + 1
           // Adding up points depending on the weight of each answer.
           myCategories[vals[1]].points = myCategories[vals[1]].points + (1 * vals[2])
+          overall[0] = overall[0] + (1 * vals[2])
         }
       }
     })
@@ -125,6 +129,7 @@ function generateStatistics(result, testPool, callback) {
   callbackResults.maxAnswers = maxAnswers
   callbackResults.correctAnswers = correctAnswers
   callbackResults.percentage = ((correctAnswers / maxAnswers) * 100).toFixed(0)
+  callbackResults.overall = overall
   callbackResults.pool = testPool
   callbackResults.result = result
   callbackResults.categories = myCategories

@@ -26,3 +26,19 @@ div.mastfoot {
    display: block;
    margin: auto;
 }
+
+#category {
+  text-align: left;
+}
+
+#overall {
+  text-align: left;
+}
+
+#seperator {
+  height: 20px
+}
+
+#points {
+  text-align: right;
+}

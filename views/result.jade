@@ -12,20 +12,31 @@ div.container
             p=locals.locals.user.gender + ' ' + locals.locals.user.name
             p erreichte am #{time} im CBM-Eignungstest
           row
-            p=locals.locals.percentage + ' Prozent'
+            h4=locals.locals.percentage + ' Prozent'
           - if (locals.percentage > 50)
             p und hat damit den Test bestanden.
           - else
             p und hat damit den Test nicht bestanden.
 
-        div.container(style="text-align: center;")
-          row
-            p Die erreichten Punkte setzen sich wie folgt zusammen:
-            
+          row.col-md-12
+            div#seperator
         div.container(style="text-align: center; padding-bottom: 100px")
-          row
-            p
-              span='Gesamt' 
+          row.col-md-12
+            div.col-md-2 
+            div.col-md-10#overall='Die erreichten Punkte setzen sich wie folgt zusammen:'
+          row.col-md-12
+            div.col-md-2 
+            div.col-md-4#overall
+              h4='Gesamt'
+            div.col-md-4
+              h4#points=locals.locals.overall[0] + ' von ' + locals.locals.overall[1] + ' Punkten'
+            div.col-md-2
+          row.col-md-12
+            div#seperator
 
           - each entry in locals.locals.categories
-            p='In der Kategorie ' + entry.category + ' - ' + entry.points + ' von ' + entry.maxPoints + ' Punkten'
+            row.col-md-12
+              div.col-md-2
+              div.col-md-4#category='In der Kategorie ' + entry.category
+              div.col-md-4#points=entry.points + ' von ' + entry.maxPoints  + ' Punkten'
+              div.col-md-2
