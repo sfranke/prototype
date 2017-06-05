@@ -28,6 +28,7 @@ block content
                     |    $('div#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).children('button').each(function (index, value) {
                     |      if($('button[id^="#{task.question_id}"]').is(':animated')) { return }
                     |      $('button[id^="#{task.question_id}"]').not('button#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).attr("disabled", "disabled")
+                    |      $('div[id^="#{task.question_id}"]').not('button#' + #{task.question_id} + '-' + #{task.answers.indexOf(answer)}).off()
                     |      result['#{task.question_id}'] = #{task.answers.indexOf(answer)}
                     |      console.info('result: '+ result)
                     |    });
@@ -40,7 +41,7 @@ block content
       div.container
         div.row
           div.col-xs-12.col-sm-12.col-md-12
-            button.btn.btn-default(id='done', class='btn btn-primary center-block') Auswerten
+            button.btn.btn-success(id='done', class='btn btn-primary center-block') Auswerten
             script
               |$( document ).ready(function() {
               |  $('#done').click(function() {
@@ -55,4 +56,3 @@ block content
               |  })
               |})
       div(class='help-block')
-  include footer
