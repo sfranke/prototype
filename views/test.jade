@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div.container(id='test')
+  div#test
     - if (pool != undefined)
       script
         |var responsePool = {}
@@ -51,7 +51,7 @@ block content
               |    response.testPool = JSON.stringify(testPool)
               |    $.post('results', response, function (data) {
               |      $("#test").html(data)
-              |      $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+              //- |      $("html, body").animate({ scrollTop: $(document).height() }, 1000);
               |    })
               |  })
               |})

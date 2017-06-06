@@ -13,6 +13,7 @@ var bodyParser = require('body-parser')
 let options = {}
 options.phantomPath = path.resolve(__dirname) + '/../node_modules/phantomjs/lib/phantom/bin/phantomjs'
 options.cssPath = path.resolve(__dirname) + '/../public/css/bootstrap.css'
+options.paperFormat = 'A4'
 options.locals = {}
 
 // Returns the current date preformatted for germans.

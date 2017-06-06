@@ -1,9 +1,9 @@
-div.container
+div
   link(href='stylesheets/style.css', rel='stylesheet')
   div#main
     div#content
       row
-        img(src="../images/CBM_logo.svg")#logo
+        div#logo
       row
         h1(style="text-align: center;") Eignungstest
 
@@ -18,25 +18,27 @@ div.container
           - else
             p und hat damit den Test nicht bestanden.
 
-          row.col-md-12
-            div#seperator
-        div.container(style="text-align: center; padding-bottom: 100px")
-          row.col-md-12
-            div.col-md-2 
-            div.col-md-10#overall='Die erreichten Punkte setzen sich wie folgt zusammen:'
-          row.col-md-12
-            div.col-md-2 
-            div.col-md-4#overall
-              h4='Gesamt'
-            div.col-md-4
-              h4#points=locals.locals.overall[0] + ' von ' + locals.locals.overall[1] + ' Punkten'
-            div.col-md-2
-          row.col-md-12
-            div#seperator
+            row.col-xs-12.col-sm-12.col-md-12
+              div#seperator
+          div.container(style="text-align: center; padding-bottom: 100px")
+            row.col-xs-12.col-sm-12.col-md-12
+              div.col-xs-1.col-sm-1.col-md-2
+              div.col-xs-10.col-sm-10.col-md-10#overall='Die erreichten Punkte setzen sich wie folgt zusammen:'
+            row.col-xs-12.col-sm-12.col-md-12
+              div.col-xs-1.col-sm-1.col-md-2 
+              div.col-xs-5.col-sm-5.col-md-4#overall
+                h4='Gesamt'
+              div.col-xs-5.col-sm-5.col-md-4
+                h4#points=locals.locals.overall[0] + ' von ' + locals.locals.overall[1] + ' Punkten'
+              div.col-xs-1.col-sm-1.col-md-2
+            row.col-xs-12.col-sm-12.col-md-12
+              div#seperator
 
-          - each entry in locals.locals.categories
-            row.col-md-12
-              div.col-md-2
-              div.col-md-4#category='In der Kategorie ' + entry.category
-              div.col-md-4#points=entry.points + ' von ' + entry.maxPoints  + ' Punkten'
-              div.col-md-2
+            - each entry in locals.locals.categories
+              row.col-xs-12.col-sm-12.col-md-12
+                div.col-xs-1.col-sm-1.col-md-2
+                div.col-xs-5.col-sm-5.col-md-4#category='In der Kategorie ' + entry.category
+                div.col-xs-5.col-sm-5.col-md-4#points=entry.points + ' von ' + entry.maxPoints  + ' Punkten'
+                div.col-xs-1.col-sm-1.col-md-2
+              row.col-xs-12.col-sm-12.col-md-12
+                div#seperator

@@ -6793,3 +6793,57 @@ button.close {
   width: 34%;
   height: 100%;
 }
+
+#main {
+  display: table;
+  position: static;
+  height: 50%;
+  width: 100%;
+  margin-top: 10%
+}
+
+#content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#logo {
+  background-image: url("../images/CBM_logo.png");
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: auto;
+}
+
+/*div#logo {
+  background-image: url("../images/CBM_logo.png");
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: auto;
+}*/
+
+#registerform {
+  display: block;
+  margin: auto;
+}
+
+#category {
+  text-align: left;
+}
+
+#overall {
+  text-align: left;
+}
+
+#seperator {
+  height: 20px
+}
+
+#points {
+  text-align: right;
+}
+
+#footer {
+  font-size: 10px;
+}

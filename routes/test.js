@@ -6,7 +6,7 @@ const util = require('util')
 const Question = require('./question')
 const QuestionPool = require('./questionPool')
 
-let poolSize = 12
+let poolSize = 40
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
