@@ -8,7 +8,7 @@ html(lang='en')
     link(href='css/bootstrap.css', rel='stylesheet')
   body(style='font-size: 9px')
   div
-    div#main(style='margin-top: 12%')
+    div#main(style='margin-top: 20%')
       div#content
         row
           div
@@ -22,11 +22,12 @@ html(lang='en')
                 p erreichte am #{time} im CBM-Eignungstest
             row
               div
-                h4=locals.percentage + ' Prozent'
+                h5=locals.percentage + ' Prozent'
               - if (locals.percentage > 50)
                 p und hat damit den Test bestanden.
               - else
                 p und hat damit den Test nicht bestanden.
+              div#seperator
               div#seperator
 
             row.col-xs-12.col-sm-12.col-md-12
@@ -38,9 +39,9 @@ html(lang='en')
             row.col-xs-12.col-sm-12.col-md-12
               div.col-xs-1.col-sm-1.col-md-2 
               div.col-xs-5.col-sm-5.col-md-4#overall
-                h4='Gesamt'
+                h5='Gesamt'
               div.col-xs-5.col-sm-5.col-md-4
-                h4#points=locals.overall[0] + ' von ' + locals.overall[1] + ' Punkten'
+                h5#points=locals.overall[0] + ' von ' + locals.overall[1] + ' Punkten'
               div.col-xs-1.col-sm-1.col-md-2
             row.col-xs-12.col-sm-12.col-md-12
               div#seperator
@@ -51,5 +52,3 @@ html(lang='en')
                 div.col-xs-6.col-sm-6.col-md-4#category='In der Kategorie ' + entry.category
                 div.col-xs-4.col-sm-4.col-md-4#points=entry.points + ' von ' + entry.maxPoints  + ' Punkten'
                 div.col-xs-1.col-sm-1.col-md-2
-              row.col-xs-12.col-sm-12.col-md-12
-                div#seperator
