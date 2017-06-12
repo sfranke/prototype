@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const database = require('./database')
 const bcrypt = require('bcrypt')
+const hash = require('./hash.js')
 
 // GET '/register'. This is the default route for users that are about to register.
 // Check if registration is enabled. If so, render route else redirect to landingpage.
@@ -34,7 +35,7 @@ router.post('/', function (req, res, next) {
       'gender': req.body.gender
     }
     // Hash password before saving it to the database.
-    generateHashedPassword(req.body.password, function (error, password) {
+    hash.generateHashedPassword(req.body.password, function (error, password) {
       if (error) console.log('error', 'Error while saving user.')
       user.password = password
       // Save user data to database. This process could potentially fail if the email provided
@@ -85,13 +86,5 @@ router.post('/toggle', function (req, res, next) {
     return res.status(403).send({error: 'Forbidden', response: null})
   }
 })
-
-// Expects the password itself and generates a hashed password. The hased password is then
-// returned in a callback to its initial caller. The method used is a synchronous bcrypt
-// method using a custom salt to increase entry barrier for decryption.
-function generateHashedPassword (password, callback) {
-  let hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(9))
-  callback(null, hashedPassword)
-};
 
 module.exports = router

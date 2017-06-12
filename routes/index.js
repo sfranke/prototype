@@ -1,13 +1,14 @@
-var express = require('express')
-var router = express.Router()
-var moment = require('moment')
-var bcrypt = require('bcrypt')
-var database = require('./database.js')
-var util = require('util')
+const express = require('express')
+const router = express.Router()
+const moment = require('moment')
+const bcrypt = require('bcrypt')
+const database = require('./database.js')
+const util = require('util')
+const hash = require('./hash.js')
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
-  var adminUser = {
+  let adminUser = {
     'name': 'Admin',
     'email': 'admin@localhost.com',
     'password': null,
@@ -20,7 +21,7 @@ router.get('/', function(req, res, next) {
       // Create admin user here!
       adminUser.password = Math.random().toString(32).slice(2)
       console.log('ADMIN PASSWORD: ' + adminUser.password)
-      generateHashedPassword(adminUser.password, function (error, password) {
+      hash.generateHashedPassword(adminUser.password, function (error, password) {
         if (error) console.log('error', 'Error while saving user.')
         adminUser.password = password
         database.saveUser(adminUser, function (error, user) {
@@ -42,10 +43,4 @@ function serverTime () {
   }, 1000)
 }
 
-function generateHashedPassword (password, callback) {
-  var hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(9))
-  // console.log('Hashed password:', hashedPassword)
-  callback(null, hashedPassword)
-};
-
-module.exports = router;
+module.exports = router
