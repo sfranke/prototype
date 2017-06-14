@@ -7,7 +7,6 @@ const uri = 'mongodb://localhost:27017/iTest'
 // Expects a user object as argument. Permissions are optional and
 // default to 'user' if not set explicitly.
 database.saveUser = function (user, callback) {
-  // console.log(util.inspect(user));
   mongoClient.connect(uri, function (err, db) {
     if (err) console.log('error', 'While connecting to DB during saveUser.')
     let collection = db.collection('users')
@@ -45,8 +44,6 @@ database.deleteUser = function (userId, callback) {
     if (err) console.log('error', 'While connecting to DB during deleteUser.')
     let collection = db.collection('users')
     collection.deleteOne({'_id': id}, function (error, doc) {
-      // console.log('findOneAndDelete error:', error);
-      // console.log('findOneAndDelete doc:', doc);
       if (error === null) {
         callback(null, doc)
         db.close()
@@ -61,16 +58,12 @@ database.deleteUser = function (userId, callback) {
 // Expects a user object and a permissions string that this user's permissions should be changed to.
 // Returns either the changed user object or a error message in the callback to the calling scope.
 database.updateUserPermission = function (user, permission, callback) {
-  console.log('UpdateUserPermission database: ' + util.inspect(user) + ' --> ' + permission)
   let _id = ObjectID(user._id)
-  let permission = permission
-  console.log('TEST PERMISSION: ' + permission)
   mongoClient.connect(uri, function (err, db) {
     if (err) console.log('error', 'While connecting to DB during updateUser.')
     let collection = db.collection('users')
     collection.find({'_id': _id}).limit(1).next(function (err, doc) {
       if (err) console.log('Error fetching user during updateUser.')
-      console.log('Found DOC: ' + util.inspect(doc))
       if (doc !== null) {
         collection.update(
           {
