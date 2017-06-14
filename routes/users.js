@@ -1,7 +1,7 @@
-var express = require('express')
-var router = express.Router()
-var database = require('./database')
-var util = require('util')
+const express = require('express')
+const router = express.Router()
+const database = require('./database')
+const util = require('util')
 
 router.get('/', function (req, res, next) {
   if (!req.session.user) {
@@ -35,7 +35,7 @@ router.post('/updateUser/:id/:permission', function (req, res, next) {
   }
   if (req.session.user.permission === 'admin') {
     if (req.params.id !== 'undefined' && req.params.permission !== 'undefined') {
-      var user = {}
+      let user = {}
       user._id = req.params.id
       user.permission = req.params.permission
       database.updateUserPermission(user, user.permission, function (error, doc) {
