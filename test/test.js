@@ -8,7 +8,7 @@ let mochaTestUser = {
   'email': 'test@localhost.com',
   'password': 'test',
   'gender': 'Herr',
-  'permission': 'admin'
+  'permission': 'user'
 }
 
 let testUser = {}
@@ -27,9 +27,9 @@ describe('Testing global functions..', function() {
 
 })
 
-describe('Testing database related functionality', function() {
+describe('Testing user related functionality.', function() {
 
-  describe('Saving a user', function() {
+  describe('The system', function() {
 
     it('should be able to save a new user.', function(done) {
       database.saveUser(mochaTestUser, function (error, user) {
@@ -48,10 +48,6 @@ describe('Testing database related functionality', function() {
         done()
       })
     })
-
-  })
-
-  describe('Retrieving a user', function() {
 
     it('should get an user by its email.', function(done) {
       database.getUser(mochaTestUser, function(error, user) {
@@ -92,9 +88,17 @@ describe('Testing database related functionality', function() {
       assert.notEqual(null, testUser.gender)
       done()
     })
-  })
 
-  describe('Deleting a user', function() {
+    it('should be able to change the permission to \'admin\'', function(done) {
+      var permission = 'admin'
+      database.updateUserPermission(testUser, permission, function(error, doc) {
+        database.getUser(doc, function(error, user) {
+          assert.equal(null, error)
+          assert.equal('admin', user.permission)
+          done()
+        })
+      })
+    })
 
     it('should be able to delete a user.', function(done) {
       database.deleteUser(testUser._id, function(error, document) {

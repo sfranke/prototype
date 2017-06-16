@@ -56,7 +56,8 @@ database.deleteUser = function (userId, callback) {
 }
 
 // Expects a user object and a permissions string that this user's permissions should be changed to.
-// Returns either the changed user object or a error message in the callback to the calling scope.
+// Returns either the unchanged user object or a error message in the callback to the calling scope.
+// TODO: Consider returning the changed object.
 database.updateUserPermission = function (user, permission, callback) {
   let _id = ObjectID(user._id)
   mongoClient.connect(uri, function (err, db) {
@@ -79,7 +80,7 @@ database.updateUserPermission = function (user, permission, callback) {
           {
             upsert: true
           })
-        callback(null, user)
+        callback(null, doc)
         db.close()
       } else {
         callback({error: 'Some random error during updateUser -> collection updateUser.'}, null)
