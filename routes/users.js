@@ -40,6 +40,10 @@ router.post('/updateUser/:id/:permission', function (req, res, next) {
       user.permission = req.params.permission
       database.updateUserPermission(user, user.permission, function (error, doc) {
         if (error) console.log('Error after database.updateUserPermission: ' + util.inspect(error))
+        // Returns a message on success. The actual document in the callback does not
+        // contain the most recent user object. in stead it's the one that got passed into
+        // the database function.
+        // TODO: Consider adjusting this. Maybe the database function returns a success and/or fail.
         res.json({message: 'admin'})
       })
     } else {
