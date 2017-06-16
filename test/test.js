@@ -13,10 +13,10 @@ let mochaTestUser = {
 
 let testUser = {}
 
-describe('Testing global functions..', function() {
+describe('Testing global functions.', function() {
 
-  describe('generateHashedPassword', function() {
-    it('should be able to hash a password.', function(done) {
+  describe('The system ', function() {
+    it('should be able to encrypt a password.', function(done) {
       hash.generateHashedPassword(mochaTestUser.password, function(error, password) {
         assert.equal(null, error)
         assert.equal('string', typeof(password))
@@ -29,7 +29,7 @@ describe('Testing global functions..', function() {
 
 describe('Testing user related functionality.', function() {
 
-  describe('The system', function() {
+  describe('The system ', function() {
 
     it('should be able to save a new user.', function(done) {
       database.saveUser(mochaTestUser, function (error, user) {
