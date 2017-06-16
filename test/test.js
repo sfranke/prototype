@@ -2,6 +2,8 @@ const assert = require('assert')
 const util = require('util')
 const database = require('../routes/database.js')
 const hash = require('../routes/hash.js')
+const Question = require('../routes/question.js')
+const QuestionPool = require('../routes/questionPool.js')
 
 let mochaTestUser = {
   'name': 'Test',
@@ -110,6 +112,59 @@ describe('Testing user related functionality.', function() {
       })
     })
 
+  })
+
+})
+
+describe('Testing question related functionality.', function() {
+
+  let questionPool = {}
+
+  describe('The system ', function() {
+
+    it('should be able to create a new question object.', function(done) {
+      let question = new Question
+      assert.equal('object', typeof(question))
+      assert.notEqual(undefined, question.question_id)
+      assert.equal('number', typeof(question.question_id))
+      assert.notEqual(undefined, question.category)
+      assert.equal('string', typeof(question.category))
+      assert.notEqual(undefined, question.question)
+      assert.equal('string', typeof(question.question))
+      assert.notEqual(undefined, question.answers)
+      assert.equal('object', typeof(question.answers))
+      assert.notEqual(undefined, question.solution)
+      assert.equal('number', typeof(question.solution))
+      assert.notEqual(undefined, question.weight)
+      assert.equal('number', typeof(question.weight))
+      done()
+    })
+    it('should be able to create a new question pool object.', function(done) {
+      questionPool = new QuestionPool
+      assert.equal('object', typeof(questionPool))
+      assert.notEqual(undefined, questionPool.pool)
+      assert.equal('object', typeof(questionPool.pool))
+      done()
+    })
+    it('should be able to populate the questions pool with questions from the database.', function(done) {
+      let amount = 3
+      QuestionPool.getPool(questionPool, amount, function(error, result) {
+        assert.equal(null, error)
+        assert.equal('object', typeof(result))
+        assert.equal(amount, Object.keys(result).length)
+        done()
+      })
+    })
+  })
+
+})
+
+describe('Testing registration related functionality.', function() {
+
+  describe('The system ', function() {
+
+    it('should have a toggle option to enable/disable registration.')
+    it('should be able to register new users.')
   })
 
 })
