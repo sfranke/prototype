@@ -162,6 +162,9 @@ database.getQuestionCount = function (callback) {
   })
 }
 
+// Returns the lowest 'question_id' found in the 'questions' collection.
+// This is used during the generation of a 'questionPool' to ensure only
+// valid questions get inserted into the 'questionPool' object.
 database.getLowestId = function (callback) {
   mongoClient.connect(uri, function (err, db) {
     if (err) console.log('error', 'While retrieving lowest document Id.')
@@ -179,6 +182,9 @@ database.getLowestId = function (callback) {
   })
 }
 
+// Returns the highest 'question_id' found in the 'questions' collection.
+// This is used during the generation of a 'questionPool' to ensure only
+// valid questions get inserted into the 'questionPool' object.
 database.getHighestId = function (callback) {
   mongoClient.connect(uri, function (err, db) {
     if (err) console.log('error', 'While retrieving highest document Id.')

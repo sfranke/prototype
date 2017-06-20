@@ -168,3 +168,4 @@ describe('Testing registration related functionality.', function() {
   })
 
 })
+

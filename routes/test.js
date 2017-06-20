@@ -8,9 +8,8 @@ const QuestionPool = require('./questionPool')
 
 let poolSize = 40
 
-/* GET home page. */
+// Generate a 'QuestionPool' and render it for the client.
 router.get('/', function(req, res, next) {
-  // console.log('USERDATA: ' + util.inspect(req.session.user))
   if (!req.session.user) {
     return res.redirect('/')
   }

@@ -31,16 +31,21 @@ getCurrentDate = function() {
   return today = dd + '.' + mm + '.' + yyyy
 }
 
+// This route will handle to display the results of the test on the client side.
+// The locals object will be ready before this route is being randered.
 router.get('/', function (req, res, next) {
   let locals = options.locals
   if (!req.session.user) {
     return res.redirect('/')
   } else {
-    console.log('results object:\n' + util.inspect(locals))
     return res.render('result', {locals: locals, time: getCurrentDate()})
   }
 })
 
+// This is where the resuls object from the client is received. Calculation of the results is performed
+// within this scope. The statistics of this user's test are being generated. The second last step of this process
+// is rendering a PDF file which is stored on the file system. Last step is a rediret to the GET route to display
+// the results on the client side.
 router.post('/', function (req, res, next) {
   if (!req.session.user) {
     return res.redirect('/')
@@ -75,14 +80,11 @@ function generateStatistics(result, testPool, callback) {
   let myCategories = {}
   let overall = [0.0, 0.0]
 
-  // Get categories and category count
-  // let categories = Object.keys(testPool).map(function (question) { return testPool[question].category })
   const categories = Object.keys(testPool).map((question) => { return testPool[question].category })
-  // let cleanCategories = categories.filter(function (currentValue, index) {
-  //   return index == categories.indexOf(currentValue)
-  // })
   const cleanCategories = categories.filter((currentValue, index) => { return index == categories.indexOf(currentValue) })
 
+  // Sort the 'testPool' object by category. Count the occurence of questions depending on the catagory they are
+  // in. Then add additional attributes like 'max', 'correct', 'points', and 'maxPoints' for population later.
   for (let categ0ry in cleanCategories) {
     let count = 0
     for (let cat in Object.values(categories)) {
@@ -98,10 +100,9 @@ function generateStatistics(result, testPool, callback) {
     myCategories[cleanCategories[categ0ry]].maxPoints = 0
   }
 
+  // Generate an object that holds the possible maximum points per category.
+  // Also generate a statistic for possible maximum points overall.
   testPool.forEach(function (testPoolQuestion) {
-    // console.log('testPoolQuestion: ' + util.inspect(testPoolQuestion))
-    // console.log('testPool category: ' + testPoolQuestion.category)
-    // console.log('testPool weight: ' + testPoolQuestion.weight)
     myCategories[testPoolQuestion.category].maxPoints = myCategories[testPoolQuestion.category].maxPoints + (1 * testPoolQuestion.weight)
     overall[1] = overall[1] + (1 * testPoolQuestion.weight)
   })
@@ -119,6 +120,7 @@ function generateStatistics(result, testPool, callback) {
           myCategories[vals[1]].correct = myCategories[vals[1]].correct + 1
           // Adding up points depending on the weight of each answer.
           myCategories[vals[1]].points = myCategories[vals[1]].points + (1 * vals[2])
+          // Also add up the points gathered during the test.
           overall[0] = overall[0] + (1 * vals[2])
         }
       }
@@ -135,8 +137,6 @@ function generateStatistics(result, testPool, callback) {
   callbackResults.result = result
   callbackResults.categories = myCategories
   options.locals = callbackResults
-  // TODO: Debug output.. please remove.
-  // console.log('Results:\n' + util.inspect(callbackResults))
   callback(null, callbackResults)
 }
 
