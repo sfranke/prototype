@@ -24,7 +24,7 @@ router.get('/', function (req, res, next) {
 // POST '/register'. This route expects user data from the registration form. If not all the fields a filled
 // in this action will fail. Frontend informs the user in case of deficiencies.
 router.post('/', function (req, res, next) {
-  // TODO: Validate incoming data before processing to avoid injection attacks.
+  // TODO: Validate incoming data before processing.
   // Also check for type, and cast to string if necessary.
   if (req.body.email !== '' && req.body.name !== '' && req.body.password !== '') {
     // Creating a new user without instantiating an object of some user class.
